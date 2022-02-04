@@ -58,7 +58,7 @@ func GetUserList(ctx *gin.Context) {
 func Test(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"code": 200,
-		"msg":  "你好好",
+		"msg":  "你好",
 	})
 }
 
