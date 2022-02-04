@@ -115,14 +115,11 @@ func DeleteUser(ctx *gin.Context) {
 
 //新增学生 (完成)
 func AddUser(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, gin.H{
-		"msg": "新增学生",
-	})
 	//从前端获取数据
 	mobile := ctx.PostForm("Mobile")
 	password := ctx.PostForm("Password")
-	name := ctx.PostForm("Name ")
-	stuNum := ctx.PostForm("StuNum ")
+	name := ctx.PostForm("Name")
+	stuNum := ctx.PostForm("StuNum")
 	gender := ctx.PostForm("Gender")
 	zap.S().Infof("前端获取数据成功: "+
 		mobile, password, name, stuNum, gender,
@@ -154,6 +151,9 @@ func AddUser(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"code": 200,
 		"msg":  "完成注册",
+		"data": gin.H{
+			"data": "注册成功",
+		},
 	})
 }
 
