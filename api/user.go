@@ -2,8 +2,10 @@ package api
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"runtime"
+	"student/binding"
 	"student/dao"
 	"student/middleware"
 	"student/model"
@@ -87,10 +89,16 @@ func Test(ctx *gin.Context) {
 
 //登录(完成)
 func PasswordLogin(ctx *gin.Context) {
+	var userLogin binding.UserLogin
 	var user model.Student
+
+	if err := ctx.ShouldBind(&userLogin); err != nil {
+		log.Println(err.Error())
+	}
+	fmt.Println(userLogin)
 	//拿到输入的账号和密码
-	mobiles := ctx.PostForm("mobile")
-	passwords := ctx.PostForm("password")
+	mobiles := userLogin.Mobile
+	passwords := userLogin.Password
 	fmt.Println(mobiles, passwords)
 	if mobiles == "" {
 		fmt.Println("手机号码不能为空")
